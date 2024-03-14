@@ -1,17 +1,14 @@
-<!-- nutrition.html -->
 <h1>Nutrition Management</h1>
-<!-- Add Nutrition Form -->
+
 <div>
     <h2>Add Nutrition</h2>
-        <label for="description">Description:</label>
-        <input type="text" id="description" [(ngModel)]="newNutrition.Description" required>
-        <label for="dose">Dose:</label>
-        <input type="number" id="dose" [(ngModel)]="newNutrition.Dose" required>
-        <button (click)="addNutrition()">Add</button>
+    <label for="description">Description:</label>
+    <input type="text" id="description" [(ngModel)]="newNutrition.Description" required>
+    <label for="dose">Dose:</label>
+    <input type="number" id="dose" [(ngModel)]="newNutrition.Dose" required>
+    <button (click)="addNutrition()">Add</button>
 </div>
 
-
-<!-- List of Nutritions -->
 <div *ngIf="nutritionArray.length > 0">
     <h2>List of Nutritions</h2>
     <table>
@@ -19,29 +16,27 @@
             <tr>
                 <th>Description</th>
                 <th>Dose</th>
-                <!-- <th>Actions</th> -->
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let nutrition of nutritionArray">
                 <td>{{ nutrition.Description }}</td>
                 <td>{{ nutrition.Dose }}</td>
-                <!-- <td>
-                    <button (click)="editNutrition(nutrition)">Edit</button>
+                <td>
+                    <button (click)="loadDataUpdate(nutrition)">Edit</button>
                     <button (click)="deleteNutrition(nutrition)">Delete</button>
-                </td> -->
+                </td>
             </tr>
         </tbody>
     </table>
 </div>
-<!-- Edit Nutrition Form -->
-<!-- <div *ngIf="selectedNutrition">
+
+<div *ngIf="selectedNutrition">
     <h2>Edit Nutrition</h2>
-    <form (submit)="updateNutrition()">
-        <label for="edit-description">Description:</label>
-        <input type="text" id="edit-description" [(ngModel)]="selectedNutrition.Description" required>
-        <label for="edit-dose">Dose:</label>
-        <input type="number" id="edit-dose" [(ngModel)]="selectedNutrition.Dose" required>
-        <button type="submit">Update</button>
-    </form>
-</div> -->
+    <label for="edit-description">Description:</label>
+    <input type="text" id="edit-description" [(ngModel)]="selectedNutrition.Description" required>
+    <label for="edit-dose">Dose:</label>
+    <input type="number" id="edit-dose" [(ngModel)]="selectedNutrition.Dose" required>
+    <button (click)="editNutrition()">Update</button>
+</div>
