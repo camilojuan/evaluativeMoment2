@@ -1,25 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
+@import "~bootstrap/dist/css/bootstrap.min.css";
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
-}
 
 
 

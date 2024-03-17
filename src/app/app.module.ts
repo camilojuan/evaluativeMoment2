@@ -8,13 +8,15 @@ import { NutritionController } from './controllers/nutrition.controller';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NutritionModel } from './model/nutrition';
+import { NavComponent } from './component/nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PorcinoController,
     NutritionController,
-    PorcinoController
+    PorcinoController,
+    NavComponent
   ],
   imports: [
     BrowserModule,

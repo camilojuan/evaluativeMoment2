@@ -19,6 +19,9 @@ export class NutritionModel {
             this.nutritions = [];
         }
     }
+    private saveToLocalStorage(): void {
+        localStorage.setItem('nutritions', JSON.stringify(this.nutritions));
+    }
     
     generateGUID(): string {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -56,9 +59,7 @@ export class NutritionModel {
         }
     }
 
-    private saveToLocalStorage(): void {
-        localStorage.setItem('nutritions', JSON.stringify(this.nutritions));
-    }
+    
 
     getLocalStorageArray(): NutritionDTO[] {
         return this.nutritions;
