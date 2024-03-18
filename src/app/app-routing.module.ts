@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NutritionController } from './controllers/nutrition.controller';
-import { ClientController } from './controllers/client.controller';
+import { ClienteController } from './controllers/client.controller';
 import { PorcinoController } from './controllers/porcino.controller';
 
 const routes: Routes = [
@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'cliente',
-    component: ClientController
+    component: ClienteController
   },
   {
     path: 'nutricion',
