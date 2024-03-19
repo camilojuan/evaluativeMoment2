@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-
-// Importa la interfaz del DTO de cliente
 import { ClientDTO } from "../helpers/DTO/clientDTO";
+import * as ExcelJS from 'exceljs';
+import { saveAs } from 'file-saver';
 
 @Injectable({
     providedIn: 'root'
@@ -86,5 +86,21 @@ export class ClienteModel {
     // Obtiene un cliente por su cédula
     getByIdClient(idClient: string): ClientDTO | undefined {
         return this.clientes.find(cliente => cliente.idClient === idClient);
+    }
+
+    generateExcel(): Promise<ArrayBuffer> {
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('Clientes');
+        
+        this.clientes.forEach(cliente => {
+            worksheet.addRow([cliente.cedula, cliente.nombres, cliente.apellidos,
+                cliente.direccion, cliente.telefono]);
+        });
+
+        return workbook.xlsx.writeBuffer();
+    }
+    saveExcelData(data: ArrayBuffer): void {
+        const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+        saveAs(blob, 'clientes.xlsx');
     }
 }

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NutritionController } from './controllers/nutrition.controller';
 import { ClienteController } from './controllers/client.controller';
 import { PorcinoController } from './controllers/porcino.controller';
+import { ReportExcelController } from './controllers/reportExcel.controller';
 
 const routes: Routes = [
 
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'nutricion',
     component: NutritionController
+  },
+  {
+    path: 'reportes',
+    component: ReportExcelController
   },
   {
     path: '**',

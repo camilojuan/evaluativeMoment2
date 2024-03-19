@@ -1,6 +1,8 @@
-import { Component,  } from "@angular/core";
+import { Component, } from "@angular/core";
 import { ClienteModel } from "../model/client";
 import { ClientDTO } from "../helpers/DTO/clientDTO";
+
+//import * as ExcelJS from 'exceljs';
 
 declare var bootstrap: any; // Declara la variable bootstrap para acceder a la funcionalidad de Bootstrap
 
@@ -12,10 +14,12 @@ declare var bootstrap: any; // Declara la variable bootstrap para acceder a la f
   `]
 })
 export class ClienteController {
-  constructor(private clienteModel: ClienteModel) {
+  constructor(
+    private clienteModel: ClienteModel
+    ) {
     this.getClientes();
   }
-  
+
   selectedCliente: ClientDTO | null = null;
   newCliente: ClientDTO = new ClientDTO();
   clienteArray: ClientDTO[] = [];
@@ -43,7 +47,7 @@ export class ClienteController {
     }
   }
 
-  public modalDelete(cliente: ClientDTO){
+  public modalDelete(cliente: ClientDTO) {
     this.loadData(cliente);
   }
 
@@ -56,7 +60,16 @@ export class ClienteController {
     }
   }
 
-  limpiarSelectedCliente(){
+  limpiarSelectedCliente() {
     this.selectedCliente = null; // Limpiar el objeto seleccionado después de editar
+  }
+  generateExcel() {
+    this.clienteModel.generateExcel()
+      .then((data: ArrayBuffer) => {
+        this.clienteModel.saveExcelData(data);
+      })
+      .catch(error => {
+        console.error('Error al generar el archivo Excel:', error);
+      });
   }
 }

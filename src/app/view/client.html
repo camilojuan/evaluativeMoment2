@@ -46,6 +46,17 @@
                 </div>
                 <div class="col-md-12"></div>
             </div>
+            <!--Reportes-->
+            <div class="row p-3" *ngIf="clienteArray && clienteArray.length > 0">
+                <div class="col-md-3"></div>
+                
+                <div class="col-xs-6">
+                    <div class="gap-2">
+                        <button class="btn btn-info" (click)="generateExcel()" type="button">Generar Reporte</button>
+                      </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
             <div class="row p-3" *ngIf="clienteArray && clienteArray.length > 0">
                 <div class="col-xs-1"></div>
                 <div class="col-xs-10 col-md-12 text-primary-emphasis  border border-primary-subtle rounded-3">
