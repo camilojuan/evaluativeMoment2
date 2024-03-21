@@ -9,12 +9,16 @@ const routes: Routes = [
 
   {
     path:'',
-    component:PorcinoController
+    component:ReportExcelController
   },
   {
     path:'',
-    redirectTo: '/porcino',
+    redirectTo: '/reportes',
     pathMatch: 'full'
+  },
+  {
+    path: 'reportes',
+    component: ReportExcelController
   },
   {
     path: 'porcino',
@@ -28,13 +32,10 @@ const routes: Routes = [
     path: 'nutricion',
     component: NutritionController
   },
-  {
-    path: 'reportes',
-    component: ReportExcelController
-  },
+  
   {
     path: '**',
-    component: PorcinoController
+    component: ReportExcelController
   }
 
 ];

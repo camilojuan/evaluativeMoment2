@@ -22,7 +22,8 @@ import { NavComponent } from './component/nav/nav.component';
     PorcinoController,
     NutritionController,
     NavComponent,
-    ClienteController
+    ClienteController,
+    ReportExcelController
   ],
   imports: [
     BrowserModule,

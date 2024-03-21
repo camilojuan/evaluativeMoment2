@@ -1,6 +1,9 @@
-export  class PorcinoDTO {
-
-    nutritionId?: string;
-    Description?: string;
-    Dose?: number;
+export class PorcinoDTO {
+    idPorcino?: string;
+    identificacion?: string;
+    raza?: string;
+    edad?: number;
+    peso?: string;
+    alimentacion?: string;
+    cliente?: string;
 }

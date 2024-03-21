@@ -28,13 +28,13 @@ export class ClienteModel {
     private saveToLocalStorage(): void {
         localStorage.setItem('clientes', JSON.stringify(this.clientes));
     }
-    
+
     // Genera un identificador único para los clientes
     generateGUID(): string {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-          const r = Math.random() * 16 | 0;
-          const v = c === 'x' ? r : (r & 0x3 | 0x8);
-          return v.toString(16);
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            const r = Math.random() * 16 | 0;
+            const v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
         });
     }
 
@@ -91,12 +91,31 @@ export class ClienteModel {
     generateExcel(): Promise<ArrayBuffer> {
         const workbook = new ExcelJS.Workbook();
         const worksheet = workbook.addWorksheet('Clientes');
-        
-        this.clientes.forEach(cliente => {
-            worksheet.addRow([cliente.cedula, cliente.nombres, cliente.apellidos,
-                cliente.direccion, cliente.telefono]);
+    
+        // Establecer estilos para los encabezado
+        const headerRow = worksheet.addRow(['Cédula', 'Nombres', 'Apellidos', 'Dirección', 'Teléfono']);
+        headerRow.eachCell(cell => {
+            cell.font = { bold: true, size: 16 }; // Negrita y tamaño
+            cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFC0CB' } }; // Color de fondo (rosa claro)
+            cell.alignment = { horizontal: 'center' }; // Centrar texto
+            cell.border = { top: { style: 'thick' }, left: { style: 'thick' }, bottom: { style: 'thick' }, right: { style: 'thick' } }; // Borde grueso
         });
-
+    
+        // Establecer estilos para el contenido
+        worksheet.eachRow(row => {
+            row.eachCell(cell => {
+                cell.font = { size: 12 }; // Tamaño de letra 12 puntos para todo el contenido
+                cell.alignment = { horizontal: 'center' }; // Centrar texto
+                cell.border = { top: { style: 'thick' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } }; // Borde delgado
+            });
+        });
+    
+        // Agregar datos de los clientes
+        this.clientes.forEach(cliente => {
+            worksheet.addRow([cliente.cedula, cliente.nombres, cliente.apellidos, cliente.direccion, cliente.telefono]);
+        });
+    
+        // Escribir el contenido en un búfer y devolverlo como una promesa
         return workbook.xlsx.writeBuffer();
     }
     saveExcelData(data: ArrayBuffer): void {
